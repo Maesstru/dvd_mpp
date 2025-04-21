@@ -1,0 +1,37 @@
+# Byte-compiled / cache files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+env/
+ENV/
+.venv/
+
+# Django-specific
+*.sqlite3
+*.log
+*.pot
+*.pyc
+media/
+staticfiles/  # if you're collecting static in container
+
+# Secrets
+.env
+.env.*
+
+# Editor/IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Git
+.git/
+.gitignore
+
+# OS-specific
+.DS_Store
+Thumbs.db
+

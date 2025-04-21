@@ -1,0 +1,47 @@
+{% extends "dvd_app/base.html" %}
+{% load static %}
+{%block extra-header%}
+<link type="text/css" href="{% static 'dvd_app/santa.css' %}" rel="stylesheet"/>
+<link type="text/css" href="{% static 'dvd_app/main.css' %}" rel="stylesheet"/>
+<link type="text/css" href="{% static 'dvd_app/form.css' %}" rel="stylesheet"/>
+     {%endblock%}
+
+{% block main-content %}
+{% include 'dvd_app/includes/navbar.html'%}
+    
+    
+    
+    
+    {% if all_good %}
+        <div id="all-good" class="dynamic-height-text h1">Toti copii si-au gasit un binevoitor!</div>
+    {% else %}
+    <div class="form-wrapper">
+        <form action="{% url 'dvd_app:main_view'%}" method="post"%} class="action-form">
+            <div class="dynamic-height-text h1">Cauta un copil</div>
+            {% csrf_token %}
+            <div class="fields">
+                {% for field in form %}
+                <div class="form-field">
+                    {{ field }}
+                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                </div>
+            
+            {% endfor %}
+            </div>
+            <button id="cauta_button" type="submit" class="pushable action-btn">
+                <span class="front">
+                    Cauta!
+                  </span>
+            </button>
+        </form>
+    </div>
+        
+    {% endif %}
+
+
+
+{% endblock %}
+
+{% block js-stuff %}
+<script src="{% static 'dvd_app/navbar-script.js'%}"></script>
+{% endblock %}

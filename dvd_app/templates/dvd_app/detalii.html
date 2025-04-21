@@ -1,0 +1,35 @@
+{% extends "dvd_app/base.html" %}
+{% load static %}
+{%block extra-header%}
+<link type="text/css" href="{% static 'dvd_app/santa.css' %}" rel="stylesheet"/>
+<link type="text/css" href="{% static 'dvd_app/main.css' %}" rel="stylesheet"/>
+<link type="text/css" href="{% static 'dvd_app/form.css' %}" rel="stylesheet"/>
+     {%endblock%}
+
+{% block main-content %}
+{% include 'dvd_app/includes/navbar.html'%}
+<div class="form-wrapper">
+    <div class="action-form">
+        <div class="info">
+            <div class="dynamic-height-text h1">Detalii pentru acest copil:</div>
+            <div class="dynamic-height-text h2">Varsta: {{ copil.varsta }} ani</div>
+            <div class="dynamic-height-text h2"> Gen: {{ copil.gen }}</div>
+            {% if copil.descriere%}
+                <div class="dynamic-height-text h2">Detalii: {{ copil.descriere }}</div>
+            {% endif %}
+        </div>
+        <div class="buttons">
+            <button id="inapoi_button" type="button" onclick="window.location.href='{% url 'dvd_app:copiii_mei' %}';" class="pushable action-btn">
+                <span class="front">
+                    Inapoi
+                  </span>
+            </button>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block js-stuff %}
+<script src="{% static 'dvd_app/navbar-script.js'%}"></script>
+{% endblock %}

@@ -1,0 +1,28 @@
+# Use an official Python runtime as a base image for development
+FROM python:3.11-slim
+
+# Set environment variables for Python
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1
+
+# Set work directory
+WORKDIR /app
+
+# Install system dependencies (e.g. for PostgreSQL, etc.)
+# RUN apt-get update && apt-get install -y \
+#     build-essential \
+#     libpq-dev \
+#     && rm -rf /var/lib/apt/lists/*
+
+# Install dependencies from the requirements file
+COPY requirements.txt .
+RUN pip install --upgrade pip && pip install -r requirements.txt
+
+# Copy the rest of the project code into the container
+COPY . .
+
+# Expose the port the app will run on (default Django port)
+EXPOSE 8000
+
+# Default command to run the Django development server with auto-reload
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]

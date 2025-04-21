@@ -1,0 +1,27 @@
+{% extends "dvd_app/main_view.html" %}
+{% load static %}
+{%block extra-header%}
+<link type="text/css" href="{% static 'dvd_app/santa.css' %}" rel="stylesheet"/>
+<link type="text/css" href="{% static 'dvd_app/main.css' %}" rel="stylesheet"/>
+<link type="text/css" href="{% static 'dvd_app/form.css' %}" rel="stylesheet"/>
+     {%endblock%}
+
+{% block main-content %}
+<div class="form-wrapper">
+     <div class="action-form">
+         <div class="dynamic-height-text h1">Ups!</div>
+         {% csrf_token %}
+         <div class="fields">
+          <div class="dynamic-height-text h2">Nu exista aceasta pagina!</div>
+         </div>
+         <button id="cauta_button" type="submit" class="pushable action-btn" onclick="window.location.href='{% url 'dvd_app:main_view' %}'">
+             <span class="front">
+                 Inapoi la pagina principala
+               </span>
+         </button>
+     </div>
+ </div>
+{% endblock %}
+
+{% block js-stuff %}
+{% endblock %}

@@ -1,0 +1,69 @@
+<div id="sticla" class="sticla"></div>
+    <nav id="navbar" class="navbar">
+        <ol class="navbar-ol">
+            <li>
+                <a href="https://www.ascorcluj.ro/">
+                    <div class="logo"></div>
+                </a>
+            </li>
+            <li class="right">
+                    <div id="mos-meniu-help">Meniu -></div>
+                    <div class="cartoon hb" id="santa-btn">
+                        <div class="beard clickable"></div>
+                      <div class="head r clickable"></div>
+                      <div class="mustache clickable"></div>
+                      <div class="mustache clickable"></div>
+                      <div class="cheeks r clickable"></div>
+                      <div class="eyes r clickable"></div>
+                      <div class="hat ha hb clickable"></div>
+                    </div>
+                
+            </li>
+        </ol>
+        <menu class="action-options" id="action-options">
+            <ol>
+                
+                
+                <li>
+                    <button type="button" value="ok" class="pushable" id="copiii-mei-btn" onclick="window.location.href='{% url 'dvd_app:copiii_mei' %}'">
+                        <span class="front">
+                            Copiii mei
+                          </span>
+                    </button>
+                </li>
+                <li>
+                    <button type="button" value="ok" class="pushable" id="contul-meu-btn" onclick="window.location.href='{% url 'dvd_app:actualizeaza_date' %}'">
+                        <span class="front">
+                            Contul meu
+                          </span>
+                    </button>
+                </li>
+                <li>
+                    <button type="button" value="ok" class="pushable" id="logout-btn" onclick="window.location.href='{% url 'dvd_app:logout' %}'">
+                        <span class="front">
+                            Logout
+                          </span>
+                    </button>
+                </li>
+            </ol>
+        </menu>
+        <div class="campanie-wrapper">
+                
+                <div class="campanie">
+                    <button type="button" value="ok" class="pushable" id="acasa-btn" onclick="window.location.href='{% url 'dvd_app:main_view' %}'">
+                    <span class="front">
+                        <i class="fa-solid fa-house"></i>
+                    </span>
+                        
+                      
+                    </button>
+                    <div id="text">
+                        Daruind vei dobandi
+                    </div>
+                    
+                </div>
+            
+        </div>
+
+        
+    </nav>

@@ -1,0 +1,64 @@
+intrebari:
+	pe ce server e hostat www.ascorcluj.ro
+		linux?
+		apache?
+		putem ruta din apache (daca e apache?)
+	pe ce domeniu e?
+		cine se ocupa?
+		putem pune un subdomeniu?
+	mai este loc si pentru noi?
+	ar trebuie sa facem un docker sau ajunge un virtual environment?
+	este vreun python deja instalat acolo?
+	cum accesam serverul ala?
+
+main-u facem Ci/CD cu serveru
+	
+	
+Reqs:
+	Copil <-> Binevoitor
+	lista cu copii
+		ce detalii are fiecare copil
+
+	Binevoitor
+		email
+		parola
+		nume
+		telefon
+	
+	Copil:
+		Binevoitor
+		varsta
+		gen
+		preferinte/descriere
+		parohie
+		bool - daruit (am livrat cadoul)
+
+
+
+BEFORE PRODUCTION TODOs:
+	settings.py
+		DOMAIN_NAME sa fie ce domain primim de la domnul Ghiosip
+		in ALLOWED_HOSTS sa fie valoare lui DOMAIN_NAME
+		DEBUG = FALSE
+
+	cronjob creat pe 15 si pe 20 decembrie sa faca (din virtual environment)
+		python send_reminder_mails.py
+	cronjob sa faca de 2 ori pe zi backup la baza de date (nu neaparat din vritual environment):
+		backup_db.sh
+
+	AT LAUNCH:
+		python -m venv ./dvd_env
+		source dvd_env/bin/activate
+		pip install -r requirements.txt
+		pip install gunicorn
+
+		python manage.py createsuperuser
+		python manage.py migrate
+		python manage.py collectstatic
+
+		https://www.digitalocean.com/community/tutorials/how-to-set-up-django-with-postgres-nginx-and-gunicorn-on-ubuntu
+
+
+	
+		
+	

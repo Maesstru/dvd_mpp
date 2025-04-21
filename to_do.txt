@@ -1,0 +1,8 @@
+Frontend ->
+	-bibilim stilurile si le facem sa arate bine pe toate platformele
+	-refactorizam css-ul(cand l-am scris eram pe fuga si poate am scris mult cod redundant)
+	-facem o clasa cu rutele de frontend(views urile practic)
+
+Backend ->
+	-impartirea codului in layered architecture(repo -> service -> API endpoints)
+	-facem o clasa cu API endpoints

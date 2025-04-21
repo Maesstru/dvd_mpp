@@ -1,0 +1,75 @@
+{% extends "dvd_app/base.html" %}
+{% load static %}
+{%block extra-header%}
+<link type="text/css" href="{% static 'dvd_app/santa.css' %}" rel="stylesheet"/>
+<link type="text/css" href="{% static 'dvd_app/main.css' %}" rel="stylesheet"/>
+<link type="text/css" href="{% static 'dvd_app/table.css' %}" rel="stylesheet"/>
+     {%endblock%}
+
+{% block main-content %}
+{% include 'dvd_app/includes/navbar.html'%}
+
+    <div class="dynamic-height-text h1 black">Copiii cărora le veți oferi cadou</div> 
+    {% if copii %}
+    <div class="table-wrapper">
+    <table>
+        <thead>
+            <tr>
+                <th>Gen</th>
+                <th>Varsta</th>
+                <th>Status cadou</th>
+                <th class="three-fr"></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for copil in copii %}
+                <tr>
+                    <td>{{ copil.get_gen_display }}</td>
+                    <td>{{ copil.varsta }}</td>
+                    <td>
+                        {% if copil.daruit %}
+                            ✅ Cadou oferit
+                        {% else %}
+                            ❌ Fara cadou
+                        {% endif %}
+                    </td>
+                    <td style="white-space: nowrap;" class="three-fr">
+                        <div class="buttons">
+                            <button type="button" value="ok" class="pushable {%if not copil.daruit%} btn-contrast-shadow{%endif%}" id="daruit-btn-shadow" onclick="window.location.href='{% url 'dvd_app:cadou_livrat' copil.id %}'">
+                                <span class="front {%if not copil.daruit%} btn-contrast{%endif%}" id="daruit-btn">
+                                    {% if copil.daruit %}
+                                    Nu am livrat
+                                    {% else %}
+                                    Am livrat
+                                    {% endif %}
+                                  </span>
+                            </button>
+                            <button type="button" class="pushable" id="logout-btn" onclick="window.location.href= '{% url 'dvd_app:detalii' copil.id %}' ">
+                                <span class="front">
+                                    Detalii
+                                  </span>
+                            </button>
+                            <button type="button" class="pushable" id="logout-btn" onclick="window.location.href= '{% url 'dvd_app:confirm_renunta' copil.id %}' ">
+                                <span class="front">
+                                    Renunta
+                                  </span>
+                            </button>
+                        </div>
+                        
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    </div>
+
+    
+    {% else %}
+    <div class="dynamic-height-text h2 black">Momentan nu daruiesti un cadou la nici un copil.</div>
+    {% endif %}
+{% endblock %}
+
+{% block js-stuff %}
+<script src="{% static 'dvd_app/navbar-script.js'%}"></script>
+{% endblock %}

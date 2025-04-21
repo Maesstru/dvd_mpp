@@ -1,0 +1,109 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{% block title %}Daruind veri Dobandi🎅🏻{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" crossorigin="anonymous">
+
+
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link type="text/css" href="{% static 'dvd_app/style.css' %}" rel="stylesheet"/>
+    <!-- <link rel="shortcut icon" type="image/ico" href="{% static 'core/dnd_icon.png' %}"/> -->
+     {%block extra-header%}
+     {%endblock%}
+</head>
+
+<body>
+    <div class="main-container">
+        <div class="navbar-spacer"></div>
+
+        {% if messages %}
+        <div class="glass" id="std-err">
+            <div class="message-container">
+                <h1 class="error-title">Ho ho ho!</h1>
+                <ul class="messages">
+                    {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+                        <div class="dynamic-height-text h2 black">{{ message }}</div>    
+                    </li>
+                    {% endfor %}
+                    
+                </ul>
+                <button type="button" value="ok" class="pushable" id="std-err-btn">
+                    <span class="front">
+                        ok
+                      </span>
+                </button>
+            </div>
+        </div>
+        {% endif %}
+
+        {% if form.errors %}
+        <div class="glass" id="form-err">
+            <div class="message-container">
+                <p class="error-title">Ups!</p>
+                <ul class="messages">
+                    {% for field,message in form.errors.items %}
+                    <li><div class="dynamic-height-text h2 black">{{ message }}</div> </li>
+                    {% endfor %}
+                    
+                </ul>
+                <button type="button" value="ok" class="pushable" id="form-err-btn">
+                    <span class="front">
+                        ok
+                      </span>
+                </button>
+            </div>
+        </div>
+       
+        
+        {% endif %}
+
+        {% block main-content %}
+        {% endblock %}
+        <footer></footer>
+    </div>
+    
+
+<script>
+
+function hide(item){
+    item.classList.add("hide")
+}
+
+document.addEventListener('invalid', (function(){
+    return function(e) {
+      //prevent the browser from showing default error bubble / hint
+      e.preventDefault();
+      // optionally fire off some custom validation handler
+      // myValidation();
+    };
+})(), true)
+
+var sdtErr = document.getElementById("std-err")
+var formErr = document.getElementById("form-err")
+var stdErrBtn = document.getElementById("std-err-btn")
+var formErrBtn = document.getElementById("form-err-btn")
+
+if(stdErrBtn){
+    stdErrBtn.addEventListener("click", () =>{hide(sdtErr)})
+    sdtErr.addEventListener("click", () =>{hide(sdtErr)})
+}
+
+if(formErr){
+    document.getElementById("form-err-btn").addEventListener("click", () => {hide(formErr)})
+    formErr.addEventListener("click", () => {hide(formErr)})
+}
+</script>
+{% block js-stuff %}
+{% endblock %}
+</body>
+</html>
